@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Looks for and selects the first fuzzy finder it can find.
+
+
+if [ -z "$FUZZY_FINDER" ]; then
+	# find_alt() prints the first parameter recognized by `command -v`
+	find_alt() {
+		for i; do
+			command -v "${i%% *}" >/dev/null && {
+				echo "$i"
+				return 0
+			}
+		done
+		return 1
+	}
+	FUZZY_FINDER=$(find_alt sk fzf)
+fi
+
+$FUZZY_FINDER "$@"
+
+# vi:ft=sh
