@@ -1,5 +1,6 @@
+DESTDIR?=
 PREFIX?=/usr
-BINDIR=$(PREFIX)/bin
+BINDIR=$(DESTDIR)$(PREFIX)/bin
 
 install:
 	mkdir -p $(BINDIR)
